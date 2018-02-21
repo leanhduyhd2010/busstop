@@ -1,0 +1,8 @@
+{
+  "name": "BusStop",
+  "app_id": "2318847a",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
