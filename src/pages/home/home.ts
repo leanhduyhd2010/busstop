@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
-import { BusesPage } from '../buses/buses';
+import { StationPage } from '../station/station';
 
 @Component({
   selector: 'page-home',
@@ -58,7 +58,7 @@ export class HomePage {
       let name = this.stations[i].name;
       let lat = this.stations[i].geometry.location.lat;
       let lon = this.stations[i].geometry.location.lng;
-      var url = 'http://kekkaishi.tk/webservice/busserver.php?addstation&place_id=' + place_id + '&name=' + name + '&lat='+lat+'&lon='+lon;
+      var url = 'http://localhost:81/webservice/busserver.php?addstation&place_id=' + place_id + '&name=' + name + '&lat='+lat+'&lon='+lon;
       this.http.get(url).toPromise().then(str=>{
         console.log('Added stations to server!');
       });
@@ -66,7 +66,7 @@ export class HomePage {
   }
 
   getBuses(station){
-    this.navCtrl.push(BusesPage, {'station': station})
+    this.navCtrl.push(StationPage, {'station': station, 'stations': this.stations})
   }
 
   refreshPage(){

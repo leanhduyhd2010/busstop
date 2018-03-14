@@ -3,17 +3,18 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
 /**
- * Generated class for the AddbusesPage page.
+ * Generated class for the AddlinePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-addbuses',
-  templateUrl: 'addbuses.html',
+  selector: 'page-addline',
+  templateUrl: 'addline.html',
 })
-export class AddbusesPage {
+export class AddlinePage {
+
 
   public number;
   public direction;
@@ -32,7 +33,8 @@ export class AddbusesPage {
   }
 
   addBus(){
-    var url = 'http://kekkaishi.tk/webservice/busserver.php?addbus&place_id=' + this.station.place_id + '&number=' + this.number + '&direction=' + this.direction;
+    console.log(this.number);
+    var url = 'http://localhost:81/webservice/busserver.php?addstationtoline&place_id=' + this.station.place_id + '&number=' + this.number + '&direction=' + this.direction;
     this.http.get(url).toPromise().then(resp=>{
       var data:string =resp.text();
       const toast = this.toastCtrl.create({
