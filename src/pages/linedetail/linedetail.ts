@@ -50,7 +50,7 @@ export class LinedetailPage {
 
 
   async getConnectedStations(line_id, place_id){
-    let url = 'http://localhost:81/webservice/busserver.php?getconnectedstations&line_id=' + this.line.id + '&place_id=' + this.station.place_id;await this.http.get(url).toPromise().then(res =>{
+    let url = 'http://kekkaishi.tk/webservice/busserver.php?getconnectedstations&line_id=' + this.line.id + '&place_id=' + this.station.place_id;await this.http.get(url).toPromise().then(res =>{
       this.connectedStations = res.json();
     }) 
   }

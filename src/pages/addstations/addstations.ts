@@ -43,7 +43,7 @@ export class AddstationsPage {
       let next_place_id = station.place_id;
       let line_id = this.line.id;
 
-      let url = 'http://localhost:81/webservice/busserver.php?addnextstation&line_id=' + line_id + '&place_id=' + place_id + '&next_place_id=' + next_place_id + '&number=' + this.line.number + '&direction=' + this.line.direction;
+      let url = 'http://kekkaishi.tk/webservice/busserver.php?addnextstation&line_id=' + line_id + '&place_id=' + place_id + '&next_place_id=' + next_place_id + '&number=' + this.line.number + '&direction=' + this.line.direction;
       this.http.get(url).toPromise().then(data =>{
         const toast = this.toastCtrl.create({
           message: data.text(),
@@ -59,7 +59,7 @@ export class AddstationsPage {
       let previous_place_id = station.place_id;
       let line_id = this.line.id;
 
-      let url = 'http://localhost:81/webservice/busserver.php?addpreviousstation&line_id=' + line_id + '&place_id=' + place_id + '&previous_place_id=' + previous_place_id + '&number=' + this.line.number + '&direction=' + this.line.direction;
+      let url = 'http://kekkaishi.tk/webservice/busserver.php?addpreviousstation&line_id=' + line_id + '&place_id=' + place_id + '&previous_place_id=' + previous_place_id + '&number=' + this.line.number + '&direction=' + this.line.direction;
       this.http.get(url).toPromise().then(data =>{
         const toast = this.toastCtrl.create({
           message: data.text(),

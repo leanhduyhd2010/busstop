@@ -34,7 +34,8 @@ export class AddlinePage {
 
   addBus(){
     console.log(this.number);
-    var url = 'http://localhost:81/webservice/busserver.php?addstationtoline&place_id=' + this.station.place_id + '&number=' + this.number + '&direction=' + this.direction;
+    var url = 'http://kekkaishi.tk/webservice/busserver.php?addstationtoline&place_id=' + this.station.place_id + '&number=' + this.number + '&direction=' + this.direction;
+    console.log(url);
     this.http.get(url).toPromise().then(resp=>{
       var data:string =resp.text();
       const toast = this.toastCtrl.create({

@@ -58,7 +58,7 @@ export class HomePage {
       let name = this.stations[i].name;
       let lat = this.stations[i].geometry.location.lat;
       let lon = this.stations[i].geometry.location.lng;
-      var url = 'http://localhost:81/webservice/busserver.php?addstation&place_id=' + place_id + '&name=' + name + '&lat='+lat+'&lon='+lon;
+      var url = 'http://kekkaishi.tk/webservice/busserver.php?addstation&place_id=' + place_id + '&name=' + name + '&lat='+lat+'&lon='+lon;
       this.http.get(url).toPromise().then(str=>{
         console.log('Added stations to server!');
       });
