@@ -47,8 +47,8 @@ export class AddstationsPage {
       this.http.get(url).toPromise().then(data =>{
         const toast = this.toastCtrl.create({
           message: data.text(),
-          showCloseButton: true,
-          closeButtonText: 'OK',
+          duration: 1500,
+          position: 'bottom',
         })
         toast.present();
         this.navCtrl.pop();
@@ -63,8 +63,8 @@ export class AddstationsPage {
       this.http.get(url).toPromise().then(data =>{
         const toast = this.toastCtrl.create({
           message: data.text(),
-          showCloseButton: true,
-          closeButtonText: 'OK',
+          duration: 1500,
+          position: 'bottom',
         })
         toast.present();
         this.navCtrl.pop();

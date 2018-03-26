@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController, ActionSheetController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, LoadingController, AlertController, ActionSheetController, Navbar } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { AddlinePage } from '../addline/addline';
@@ -21,6 +21,7 @@ import 'rxjs/add/operator/toPromise';
 })
 export class StationPage {
 
+  @ViewChild(Navbar) navBar: Navbar;
   public stations;
   public station;
   public lines;
@@ -40,7 +41,10 @@ export class StationPage {
 
   async ionViewDidLoad() {
     console.log('ionViewDidLoad StationPage');
-    
+   this.navBar.backButtonClick = (e:UIEvent) => {
+     console.log('BACKBUTTON CLICKED!');
+     this.navCtrl.popToRoot();
+   }
   }
 
 
@@ -96,7 +100,6 @@ export class StationPage {
   }
 
   setBusPassed(line){
-    let timedelay = 60000;
     var url = 'http://kekkaishi.tk/webservice/busserver.php?addbus&line_id=' + line.id + '&place_id=' + this.station.place_id;
     this.http.get(url).toPromise().then(async data=>{
       await this.main();
@@ -185,4 +188,6 @@ export class StationPage {
     }
     return temp;
   }
+
+  
 }

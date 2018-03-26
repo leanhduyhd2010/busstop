@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { AddstationsPage } from '../addstations/addstations';
+import { StationPage } from '../station/station';
 
 /**
  * Generated class for the LinedetailPage page.
@@ -28,6 +29,7 @@ export class LinedetailPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
+    public loadingCtrl: LoadingController,
   ) {
     this.line = this.navParams.get('line');
     this.stations = this.navParams.get('stations');
@@ -36,16 +38,23 @@ export class LinedetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LinedetailPage');
-    
   }
 
-  ionViewDidEnter(){
-    this.main()
+  ionViewWillEnter(){
+    this.main();
   }
 
   async main(){
+    let loader = this.loadingCtrl.create({
+      content: 'Loading...',
+    })
+    loader.present();
     await this.getConnectedStations(this.line.id, this.station.place_id);
-
+    await this.getNextAndPrevStations();
+    this.hasnext = this.hasNextStation(this.station);
+    this.hasprevious = this.hasPreviousStation(this.station);
+    loader.dismiss();
+    
   }
 
 
@@ -57,6 +66,39 @@ export class LinedetailPage {
   
   addStation(order, line){
     this.navCtrl.push(AddstationsPage, {'order': order, 'line':line, 'stations': this.stations, 'station': this.station})
+  }
+
+  async getNextAndPrevStations(){
+    let i;
+    for (i = 0; i < this.connectedStations.length; i++){
+      if (this.station.place_id == this.connectedStations[i].place_id){
+        if (i > 0) this.connectedStations[i-1].previous = 1;
+        if (i < this.connectedStations.length - 1) this.connectedStations[i+1].next = 1;
+        break;
+      }
+    }
+  }
+
+  // return the next station if exist, else return null
+  hasNextStation(s){
+    let temp = false;
+    if (this.connectedStations.length > 1 && s.place_id != this.connectedStations[this.connectedStations.length - 1].place_id){
+      temp = true;
+    }  
+    return temp;
+  }
+
+  // return the previous station if exist, else return null
+  hasPreviousStation(s){
+    let temp = false;
+    if (s.place_id != this.connectedStations[0].place_id){
+      temp = true;
+    }
+    return temp;
+  }
+
+  goToStation(station){
+    this.navCtrl.push(StationPage, {'station': station, 'stations': this.stations});
   }
 
 }

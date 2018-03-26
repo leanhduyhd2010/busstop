@@ -14,31 +14,37 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <button ion-button block (click)="addStation('next',line)">
-      ADD NEXT STATION
-    </button>
-  </ion-card>
-  
-
-  
-
-  <ion-card>
-    <button ion-button block (click)="addStation('previous',line)">
-      ADD PREVIOUS STATION
-    </button>
-  </ion-card>
 
   <ion-list>
+    <ion-item *ngIf="!hasprevious">
+      <button ion-button clear (click)="addStation('previous',line)">
+        <ion-icon name="add" style="margin-right:10px"></ion-icon>
+        <i>Click to add previous station</i>
+      </button>
+    </ion-item>
 
-    <ion-item *ngFor="let connectedStation of connectedStations">
+    <ion-item detail-push *ngFor="let connectedStation of connectedStations" (click)="goToStation(connectedStation)">
+      <div *ngIf="connectedStation.place_id == station.place_id" class="circle active"></div>
+      <div *ngIf="connectedStation.place_id != station.place_id" class="circle"></div>
       <strong *ngIf="connectedStation.place_id == station.place_id">
           {{connectedStation.name}}
       </strong>
       <span *ngIf="connectedStation.place_id != station.place_id">
           {{connectedStation.name}}
-
       </span>
+      <button ion-button item-right clear *ngIf="connectedStation.next == 1" (click)="addStation('next',line);$event.stopPropagation();">
+        <i>Change</i>
+      </button>
+      <button ion-button clear item-right *ngIf="connectedStation.previous == 1" (click)="addStation('previous',line);$event.stopPropagation();">
+        <i>Change</i>
+      </button>
+    </ion-item>
+
+    <ion-item *ngIf="!hasnext">
+      <button ion-button clear (click)="addStation('next',line)">
+        <ion-icon name="add" style="margin-right:10px"></ion-icon>
+        <i>Click to add next station</i>
+      </button>
     </ion-item>
   </ion-list>
   
