@@ -4,3 +4,7 @@
 
 # 15.3.18
 - Fix some bugs.
+
+# 26.3.18
+- Add map in front page.
+- Change some interface.

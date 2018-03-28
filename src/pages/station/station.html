@@ -46,13 +46,11 @@
       </ion-card-title>
       <p>Address here</p>
     </ion-card-content>
-    <button ion-button block (click)="toAddBusPage()">
-      ADD A LINE
-    </button>
+    
   </ion-card>
 
   <ion-card *ngFor="let line of lines">
-    <ion-card-content>
+    <ion-card-content (click)="addStationInLine(line)">
       <ion-card-title>
         {{line.number}} - {{line.direction}}
           <img *ngIf="line.time != 'None'" src="assets/imgs/broadcast.gif" style="width:7%;display:inline">
@@ -60,16 +58,11 @@
     </ion-card-content>
 
     <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small icon-start (click)="addStationInLine(line)">
-          <ion-icon name="add"></ion-icon>
-          ADD STOPS
-        </button>
-      </ion-col>
+      
 
       <ion-col text-center *ngIf="line.time == 'None'" (click)="setBusPassed(line)">
         <button ion-button clear small>
-          I SEE IT!
+          I SEE A BUS PASSING!
         </button>
       </ion-col>
 
@@ -79,6 +72,8 @@
         </button>
       </ion-col>
 
+      <ion-col></ion-col>
+
       <ion-col text-right>
         <button ion-button clear small color="danger" icon-start>
           <ion-icon name="warning"></ion-icon>
@@ -87,6 +82,14 @@
       </ion-col>
 
     </ion-row>
+  </ion-card>
+
+  <p style="text-align: center; padding: 20px 10px 0 10px">Missing a line on this station? Click this button to add.</p>
+  
+  <ion-card>
+    <button ion-button block (click)="toAddBusPage()">
+        ADD A LINE
+    </button>
   </ion-card>
 
 </ion-content>

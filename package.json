@@ -23,6 +23,7 @@
     "@ionic-native/background-mode": "^4.5.3",
     "@ionic-native/core": "4.4.0",
     "@ionic-native/geolocation": "^4.5.3",
+    "@ionic-native/google-maps": "^4.6.0",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "4.4.0",
     "@ionic/pro": "1.0.20",
@@ -32,6 +33,7 @@
     "cordova-plugin-background-mode": "^0.7.2",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-geolocation": "^4.0.1",
+    "cordova-plugin-googlemaps": "^2.2.8",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -55,7 +57,13 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-background-mode": {}
+      "cordova-plugin-background-mode": {},
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_ANDROID": "AIzaSyDBrX-hL0pgkSqoqhdveiNcWgu1LAXTSPU",
+        "API_KEY_FOR_IOS": "AIzaSyD-Fk8e3cgprj8yecOeO7dJq0gruJNHLfY",
+        "PLAY_SERVICES_VERSION": "11.8.0",
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.0"
+      }
     },
     "platforms": [
       "android",

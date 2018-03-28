@@ -3,6 +3,7 @@ import { NavController, Platform, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { StationPage } from '../station/station';
+import { GoogleMaps, GoogleMap, GoogleMapOptions, GoogleMapsEvent, Marker } from '@ionic-native/google-maps';
 
 @Component({
   selector: 'page-home',
@@ -11,6 +12,7 @@ import { StationPage } from '../station/station';
 export class HomePage {
 
   public stations;
+  public map: GoogleMap;
 
   constructor(public navCtrl: NavController,
     public platform: Platform,
@@ -24,7 +26,7 @@ export class HomePage {
   ionViewDidLoad(){
     //when the platform is ready
     this.platform.ready().then(()=>{
-
+      console.log("Platform is ready!");
       this.main();
 
     })
@@ -41,6 +43,7 @@ export class HomePage {
       let lon = resp.coords.longitude;
       await this.getBusStation(lat, lon);
       this.addStationsToServer();
+      this.loadMap(lat, lon);
       loader.dismiss();
     })
   }
@@ -63,6 +66,41 @@ export class HomePage {
         console.log('Added stations to server!');
       });
     }
+  }
+
+  loadMap(lat, lon){
+    
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+        target: {
+          lat: lat,
+          lng: lon
+        },
+        zoom: 18,
+        tilt: 30
+      }
+    };
+
+    this.map = GoogleMaps.create('map_canvas', mapOptions);
+    
+
+
+    this.map.one(GoogleMapsEvent.MAP_READY).then(() =>{
+      console.log('Map is ready!');
+
+      // Now can use all method safely
+      this.map.addMarker({
+        title: 'You are here',
+        icon: 'blue',
+        animation: 'DROP',
+        position:{
+          lat: lat,
+          lng: lon
+        }
+      }).then((marker: Marker) =>{
+        marker.showInfoWindow();
+      })
+    });
   }
 
   getBuses(station){

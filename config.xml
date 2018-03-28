@@ -82,7 +82,13 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
+    <plugin name="cordova-plugin-googlemaps" spec="^2.2.8">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDBrX-hL0pgkSqoqhdveiNcWgu1LAXTSPU" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyD-Fk8e3cgprj8yecOeO7dJq0gruJNHLfY" />
+        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" />
+    </plugin>
     <engine name="android" spec="7.0.0" />
     <engine name="browser" spec="5.0.3" />
-    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
 </widget>

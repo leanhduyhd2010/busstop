@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundMode } from '@ionic-native/background-mode';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -42,6 +43,7 @@ import { LinedetailPage } from '../pages/linedetail/linedetail';
     SplashScreen,
     Geolocation,
     BackgroundMode,
+    GoogleMaps,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
